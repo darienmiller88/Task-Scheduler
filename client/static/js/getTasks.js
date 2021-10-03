@@ -1,5 +1,5 @@
 const reminders = document.querySelector(".reminders")
-const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/api/v1/tasks" : "https://thetaskscheduler/reminders"
+const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/api/v1/tasks" : "https://thetaskscheduler.herokuapp.com//api/v1/tasks"
 
 getTasks()
 

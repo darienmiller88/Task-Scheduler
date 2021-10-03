@@ -6,7 +6,7 @@ const reoccuring = document.querySelector(".reoccuring")
 const dateDiv = document.querySelector(".reminder-date-div")
 const timeDiv = document.querySelector(".reminder-time-div")
 const setReoccuringCheck = document.getElementById("flexCheckChecked")
-const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/reminders" : "https://thetaskscheduler/reminders"
+const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/reminders" : "https://thetaskscheduler.herokuapp.com/reminders"
 
 //When the page is loaded, hide the posted message.
 postedMessage.style.display = 'none'
