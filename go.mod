@@ -1,6 +1,6 @@
 module task_scheduler
 
-//+heroku goVersion 1.17
+// +heroku goVersion go1.17
 go 1.17
 
 require (
