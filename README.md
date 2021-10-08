@@ -1,11 +1,13 @@
 # Simple task scheduler for a client.
 
- ![](https://img.shields.io/badge/made%20by-DarienMiller-blue)
+![](https://img.shields.io/badge/made%20by-DarienMiller-blue)
 ![](https://img.shields.io/badge/Golang-1.17-yellow)
+![](https://img.shields.io/badge/build-passing-green)
+  
   
 ## Description
 
-Full stack chat application built using Golang and Postgres in the backend, and HTML, CSS, and Javascript in the frontend. This is an app for a client requiring a personalized task scheduler for their everyday use. Features I aim to add include:
+Full stack chat application built using Golang and MongoDB in the backend, and HTML, CSS, and Javascript in the frontend. This is an app for a client requiring a personalized task scheduler for their everyday use. Features I aim to add include:
 
  - JWT + Google OAuth2 authentication.
  - The ability to set single occuring and re-occuring messages.
@@ -13,7 +15,10 @@ Full stack chat application built using Golang and Postgres in the backend, and 
 
  There's more to come!
 
- ## Installation
+ ## Check it out here:
+https://thetaskmanager.herokuapp.com
+
+ ## Set up and running locally
 
 ```
    cd api
