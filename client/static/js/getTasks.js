@@ -35,8 +35,6 @@ function createTask(task){
     editButton.className = "edit"
     deleteButton.className = "delete"
 
-    console.log("reminder:", task["reminder"]);
-
     reminderName.textContent = task["reminder"]
     date.textContent = task["date"] + ", "
     time.textContent = task["time"]
