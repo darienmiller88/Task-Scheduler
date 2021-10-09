@@ -50,5 +50,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Feel free to leave suggestions as well, I'm always looking for ways to improve!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
