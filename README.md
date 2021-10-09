@@ -3,16 +3,15 @@
 ![](https://img.shields.io/badge/made%20by-DarienMiller-blue)
 ![](https://img.shields.io/badge/Golang-1.17-yellow)
 ![](https://img.shields.io/badge/build-passing-green)
-![](https://img.shields.io/badge/MongoDB-green)
-![](https://img.shields.io/badge/Twilio-red)
+![](https://img.shields.io/badge/MongoDB-Cloud-green)
+![](https://img.shields.io/badge/Twilio-API-red)
 
-<div align="center">
-  <h4> Landing page to view upcoming reminders.</h4>
-  <img src="client/img/example1.PNG" alt="Logo" width="160" height="120">
-  <br/>
-  <h4> Page to post reminders to the server.</h4>
-  <img src="client/img/example2.PNG" alt="Logo" width="160" height="120">
-</div>
+
+## Landing page to view upcoming reminders
+<img width="960" alt="example1" src="https://user-images.githubusercontent.com/32966645/136648169-b764738a-57a8-407e-8951-15b2ff5b1434.PNG">
+
+## Page to post reminders to the server.
+<img width="960" alt="example2" src="https://user-images.githubusercontent.com/32966645/136648267-ae630e4d-646d-46d8-8553-9f6854927c75.PNG">
 
 ## Description
 
@@ -24,17 +23,11 @@ Full stack chat application built using Golang and MongoDB in the backend, and H
 
  There's more to come!
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ### Built With
 
-* [Svelte](https://svelte.dev/)
-* [Gin](https://laravel.com)
+* [Gin](https://github.com/gin-gonic/gin)
 * [Bootstrap](https://getbootstrap.com)
 * [MongoDB-Atlas](https://www.mongodb.com/cloud/atlas)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
  ## Check it out here!:
 https://thetaskscheduler.herokuapp.com
@@ -55,5 +48,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Feel free to leave suggestions as well, I'm always looking for ways to improve!
 
-  ## License
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## License
 [MIT](https://choosealicense.com/licenses/mit/)
