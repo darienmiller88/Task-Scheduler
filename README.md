@@ -40,6 +40,7 @@ https://thetaskscheduler.herokuapp.com
  * [Twilio](https://www.twilio.com/try-twilio)
 
 ### Requirements
+* Clone the repository using `git clone https://github.com/darienmiller88/Task-Scheduler`
 * Migrate the necessary information to your local `.env` as described in the `.env_sample` file
 * Run `go build` to create a root level `task_scheduler.exe` file, and then run `.\task_scheduler` to run the executable. If an executable is not needed, simply input `go run main.go` instead, or `.\fresh` to enable a server restart on change.
 
@@ -49,6 +50,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Feel free to leave suggestions as well, I'm always looking for ways to improve!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
