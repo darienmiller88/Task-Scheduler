@@ -8,10 +8,10 @@
 
 <div align="center">
   <h4> Landing page to view upcoming reminders.</h4>
-  <img src="./client/img/example1.PNG" alt="Logo" width="160" height="120">
+  <img src="client/img/example1.PNG" alt="Logo" width="160" height="120">
   <br/>
   <h4> Page to post reminders to the server.</h4>
-  <img src="./client/img/example2.PNG" alt="Logo" width="160" height="120">
+  <img src="client/img/example2.PNG" alt="Logo" width="160" height="120">
 </div>
 
 ## Description
@@ -50,7 +50,7 @@ https://thetaskscheduler.herokuapp.com
 * Migrate the necessary information to your local `.env` as described in the `.env_sample` file
 * Run `go build` to create a root level `task_scheduler.exe` file, and then run `.\task_scheduler` to run the executable. If an executable is not needed, simply input `go run main.go` instead, or `.\fresh` to enable a server restart on change.
 
-  ## Contributing
+## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Feel free to leave suggestions as well, I'm always looking for ways to improve!
