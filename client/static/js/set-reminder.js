@@ -1,89 +1,170 @@
-const form  = document.querySelector(".set-reminder-form")
-const landing = document.querySelector(".post-landing")
+const singleOccuringReminderForm  = document.querySelector(".set-single-occuring-reminder-form")
+const reoccuringReminderForm = document.querySelector(".set-reoccuring-reminder-form")
 const postedMessage = document.querySelector(".reminder-posted-message")
 const days = document.querySelector(".days")
-const reoccuring = document.querySelector(".reoccuring")
 const dateDiv = document.querySelector(".reminder-date-div")
 const timeDiv = document.querySelector(".reminder-time-div")
-const setReoccuringCheck = document.getElementById("flexCheckChecked")
-const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/reminders" : "https://thetaskscheduler.herokuapp.com/reminders"
+const toggleFormButtonGroup = document.querySelector(".set-reminder-btn-group")
+const errorNoDaysSelected = document.querySelector(".days-error")
+const dateInput = document.getElementById("date")
+const timeSingleOccuring = document.getElementById("timeSingleOccuring")
+const timeReoccuring = document.getElementById("timeReoccuring")
+const activeDay = "active-day"
+const CHECKED_COLOR = "green"
+const UNCHECKED_COLOR = "rgb(211,211,211)"
+const DAY_CLASS_NAME = "day"
+const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/api/v1/reminders" : "https://thetaskscheduler.herokuapp.com/api/v1/reminders"
+let date = new Date()
 
-//When the page is loaded, hide the posted message.
-postedMessage.style.display = 'none'
-reoccuring.style.display = 'none'
 
+//Set the default date to today's date in the following form.
+dateInput.value = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+dateInput.min = dateInput.value
 
-form.addEventListener("submit", async e => {
+console.log("min:", dateInput.min );
+
+//When the page is loaded, hide the posted message, and the reoccuring form.
+postedMessage.textContent = ""
+reoccuringReminderForm.style.display = 'none'
+
+//Whenever the time value is changed, dynamically change the minimum date value to be either today's date
+//or tomorrow's date depending on whether or not the time value is less then the current time. This is done
+//to prevent the user from inputting dates that can never be triggered, like 7 AM 10/1/2021 while the current
+//time is 12 PM.  
+timeSingleOccuring.addEventListener("change", () => {
+    const currentDate = new Date()
+    const inputTime = timeSingleOccuring.value.split(":")
+    const currentHour = currentDate.getHours();
+    const currentMintues = currentDate.getMinutes()
+    const inputHour = parseInt(inputTime[0])
+    const inputMinutes = parseInt(inputTime[1])
+
+    //If the time put into the time input is LESS than the current time, push the minimum date one day forward.
+    if ((inputHour === currentHour && inputMinutes <= currentMintues) || inputHour < currentHour) {
+        dateInput.min = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`
+    }else{
+        dateInput.min = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    }
+
+    console.log("new min:", dateInput.min);
+})
+
+//This is the form for setting a single occuring reminder.
+singleOccuringReminderForm.addEventListener("submit", async e => {
     e.preventDefault()
 
-    const formData = new FormData(form)
-    let data = {}
+    const formData = new FormData(singleOccuringReminderForm)
+    const reminder = formData.get("reminder")
+    const date = formData.get("date")
+    const time = formData.get("time")
+    const data = {
+        reminder,
+        date,
+        time: getFormattedTime(time) 
+    }
+    
+    console.log(data);
+    postReminder(data, singleOccuringReminderForm)
+    singleOccuringReminderForm.reset()
+})
 
-    if(!setReoccuringCheck.checked){
-        const reminder = formData.get("reminder")
-        const date = formData.get("date")
-        const time = formData.get("time")
-        data = {
-            reminder,
-            date,
-            time,
-        }
-        console.log("Data", data)
-    }else{
-        const reminder = formData.get("reminder")
-        const time = formData.get("time")
-        const daysChecked = getCheckedDays()
-        data = {
+//This is the form for setting a reoccuring reminder.
+reoccuringReminderForm.addEventListener("submit", async e => {
+    e.preventDefault()
+
+    const formData = new FormData(reoccuringReminderForm)
+    const reminder = formData.get("reminder")
+    const time = formData.get("time")
+    const daysChecked = getCheckedDays()
+
+    //If the user selected no days, flash an error signaling them to do so.
+    if (daysChecked.length === 0) {
+        errorNoDaysSelected.textContent = "Please include at least one day!"
+        setTimeout(() => {
+            errorNoDaysSelected.textContent = ""
+        }, 2000)
+    } else {
+        const data = {
             reminder, 
-            time,
+            time: getFormattedTime(time),
             "days": daysChecked,
         }
 
+        console.log(data);
         uncheckDays()
-        console.log("Data", data)
+        postReminder(data, reoccuringReminderForm)    
+        reoccuringReminderForm.reset()
     }
-    
-    //After the form is submitted, hide it to show the posted message.
-    form.style.display = 'none'
-    postedMessage.style.display = ''
-
-    const response = await fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
-    const result = await response.json()
-
-    //After the timeout, unhide the form, and hide the posted message.
-    setTimeout(() => {
-        form.style.display = ''
-        postedMessage.style.display = 'none'
-    }, 2000)
-
-    // landing.textContent = result.message
-    console.log(result);
-    form.reset()
-    setReoccuring()
 })
 
+async function postReminder(reminder, form) {
+    try {
+         const response = await fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify(reminder),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+
+        if(!response.ok){
+            const error = await response.json()
+            throw new Error(JSON.stringify(error))
+        }
+
+        const result = await response.json() 
+        console.log("res", result);
+
+        // After sending the request to the server, hide the form, and the button group, and show the posted message
+        form.style.display = 'none'
+        toggleFormButtonGroup.style.display = 'none'
+        postedMessage.textContent = "Your reminder has been set! 👍"
+
+         //After the timeout, unhide the form, and hide the posted message.
+        setTimeout(() => {
+            form.style.display = ''
+            toggleFormButtonGroup.style.display = ''
+            postedMessage.textContent = ''
+        }, 2000)
+        
+    } catch (error) {
+        console.log("err:", error);
+    }
+}
+
+//Event listener for the days element that gets triggered when a day is clicked.
 days.addEventListener("click", e => {
-    //Only check if the span tag in the "days" div was clicked, and not the empty space around it each day.
-    if(e.target.tagName === "SPAN"){
-        if(e.target.style.backgroundColor !== "green"){
-            e.target.style.backgroundColor = "green"
+    //Only check if the "day" class in the "days" div was clicked, and not the empty space around each day.
+    if(e.target.classList.contains(DAY_CLASS_NAME)){
+        if( e.target.style.backgroundColor === CHECKED_COLOR){
+            e.target.style.backgroundColor = UNCHECKED_COLOR
         }else{
-            e.target.style.backgroundColor = "rgb(211,211,211)"
+            e.target.style.backgroundColor = CHECKED_COLOR
         }
     }
 })
+
+//My server is expecting a time variable of the form "12:30 AM", "2:40 PM", etc, for format the time 
+//accordingly. Performance implications be damned 🤷.
+function getFormattedTime(time){
+    let days = time.split(":")
+    let hour = parseInt(days[0])
+    let meridiem = (hour > 11) ? "PM" : "AM"
+
+    if(hour > 12){
+        hour -= 12
+    }else if(hour === 0){
+        hour = 12
+    }
+
+    return `${hour.toString()}:${days[1]} ${meridiem}`
+}
 
 function getCheckedDays(){
     let daysChecked = []
-    days.querySelectorAll("span").forEach(day => {
-        if(day.style.backgroundColor === "green"){
-            daysChecked.push(day.textContent)
+    days.querySelectorAll(".day").forEach(day => {
+        if(day.style.backgroundColor === CHECKED_COLOR){
+            daysChecked.push(day.textContent.trim())
         }
     })
 
@@ -91,24 +172,9 @@ function getCheckedDays(){
 }
 
 function uncheckDays(){
-    days.querySelectorAll("span").forEach(day => {
-        if(day.style.backgroundColor === "green"){
-            day.style.backgroundColor = "rgb(211,211,211)"
+    days.querySelectorAll(".day").forEach(day => {
+        if(day.style.backgroundColor === CHECKED_COLOR){
+            day.style.backgroundColor = UNCHECKED_COLOR
         }
     })
-}
-
-function setReoccuring(){
-    if(setReoccuringCheck.checked){
-        //If the checkbox is clicked, hide the date and time input, which is for a one time reminder,
-        //and unhide the list of days allowing the user to choose multiple days
-        reoccuring.style.display = ''
-        dateDiv.style.display = 'none'
-        timeDiv.style.display = 'none'
-    }else{
-        //Do the opposite when the checkbox is clicked again.
-        reoccuring.style.display = 'none'
-        dateDiv.style.display = ''
-        timeDiv.style.display = ''
-    }
 }

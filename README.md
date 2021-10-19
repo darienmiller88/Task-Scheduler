@@ -6,19 +6,23 @@
 ![](https://img.shields.io/badge/MongoDB-Cloud-green)
 ![](https://img.shields.io/badge/Twilio-API-red)
 
-
 ## Landing page to view upcoming reminders
-<img width="960" alt="example1" src="https://user-images.githubusercontent.com/32966645/136648169-b764738a-57a8-407e-8951-15b2ff5b1434.PNG">
+<img width="960" alt="home-page" src="https://user-images.githubusercontent.com/32966645/136648169-b764738a-57a8-407e-8951-15b2ff5b1434.PNG">
 
 ## Page to post reminders to the server.
-<img width="960" alt="example2" src="https://user-images.githubusercontent.com/32966645/136648267-ae630e4d-646d-46d8-8553-9f6854927c75.PNG">
+<img width="959" alt="set-reminder-page" src="https://user-images.githubusercontent.com/32966645/137986570-7bee83ec-3925-4132-b26b-984bd733f472.PNG">
+
+## Single occuring reminder page on mobile.
+<img width="202" alt="task scheduler mobile 2" src="https://user-images.githubusercontent.com/32966645/137986738-a21a4b68-9de4-49ef-974d-393b402eb9e7.PNG">
+
+## Reoccuring reminder page on mobile.
+<img width="202" alt="task scheduler mobile" src="https://user-images.githubusercontent.com/32966645/137986759-16fcd666-407a-4c64-a739-4fffd79b5b3e.PNG">
 
 ## Description
 
 Full stack chat application built using Golang and MongoDB in the backend, and HTML, CSS, and Javascript in the frontend. This is an app for a client requiring a personalized task scheduler for their everyday use. Features I aim to add include:
 
  - JWT + Google OAuth2 authentication.
- - The ability to set single occuring and re-occuring messages.
  - Text reminders using the Twilio API
 
  There's more to come!
@@ -28,6 +32,7 @@ Full stack chat application built using Golang and MongoDB in the backend, and H
 * [Gin](https://github.com/gin-gonic/gin)
 * [Bootstrap](https://getbootstrap.com)
 * [MongoDB-Atlas](https://www.mongodb.com/cloud/atlas)
+* [Twilio](https://www.twilio.com/try-twilio)
 
  ## Check it out here!:
 https://thetaskscheduler.herokuapp.com

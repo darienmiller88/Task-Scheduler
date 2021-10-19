@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../static/css/background.css">
         <link rel="stylesheet" href="../static/css/set-reminder.css">
         <link rel="stylesheet" href="../static/css/signout-btn.css">
+        <link rel="stylesheet" href="../static/css/reminderButtonGroup.css">
         <link rel="shortcut icon" type="image/x-icon" href="../static/img/alarm.ico">
         <title>Set Reminder</title>
     </head>
@@ -21,10 +22,10 @@
             <a class="navbar-brand">Oshane's Reminders Dashboard</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item" id="home-link">
-                <a class="nav-link" href="/" onclick="changeHomeToActive()">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item" id="set-reminder-link">
-                <a class="nav-link" onclick="changeSetReminderToActive()">Set Reminder</a>
+                <a class="nav-link" >Set Reminder</a>
                 </li>
             </ul>
             <button class="sign-out-btn">Sign out</button>
@@ -33,57 +34,65 @@
         <!-- End of Navbar -->
         <h1 class="title">Set Your Reminder!</h1>
         
-        <div class="reminder-posted-message">Your reminder has been set! 👍</div>
-        <form class="set-reminder-form"> 
+        <!-- Successful message appended here upon reminder posting -->
+        <div class="reminder-posted-message"></div>
 
+        <!-- Set reoccuring or single occuring button group-->
+        <div class="set-reminder-btn-group">
+            <button class="is-single-occuring">Single Occuring</button>
+            <button class="is-reoccuring">Reoccuring</button>
+        </div>
+
+        <!-- Start of Single occuring reminder form -->
+        <form class="set-single-occuring-reminder-form">
             <div class="reminder-input-div">
-                <label for="name-reminder">Reminder Name</label>
+                <label for="name-reminder" class="label">Reminder Name</label>
                 <input type="text" id="reminder-input" name="reminder" placeholder="Enter reminder name" required>
             </div>
-            
+
             <div class="reminder-date-div">
-                <label for="date">Set date</label>
-                <input type="date" id="date" name="date" value="2021-06-12" min="2021-01-01" required>
+                <label for="date" class="label">Set date</label>
+                <input type="date" id="date" name="date" required>
             </div>
 
             <div class="reminder-time-div">
-                <label for="time">Set time</label>
-                <input type="time" name="time" value="12:30" required>
+                <label for="time" class="label">Set time</label>
+                <input type="time" name="time" id="timeSingleOccuring"  required>
             </div>
 
+            <button class="set-reminder-btn">Set Reminder</button>
+        </form>
+        <!-- End of single occuring form -->
 
-            <!-- Div to show when reoccuring is clicked -->
+        <!-- Start of reoccuring reminder form  -->
+        <form class="set-reoccuring-reminder-form"> 
+            <div class="reminder-input-div">
+                <label for="name-reminder" class="label">Reminder Name</label>
+                <input type="text" id="reminder-input" name="reminder" placeholder="Enter reminder name" required>
+            </div>
+        
             <div class="reoccuring">
                 <div class="select-days-title">Select days to repeat reminder</div>
                 <div class="days">    
-                    <span class="Su"> Su </span>
-                    <span class="Mo"> Mo </span>
-                    <span class="Tu"> Tu </span>
-                    <span class="We"> We </span>
-                    <span class="Th"> Th </span>
-                    <span class="Fr"> Fr </span>
-                    <span class="Sa"> Sa </span>
+                    <span class="Su day"> Su </span>
+                    <span class="Mo day"> Mo </span>
+                    <span class="Tu day"> Tu </span>
+                    <span class="We day"> We </span>
+                    <span class="Th day"> Th </span>
+                    <span class="Fr day"> Fr </span>
+                    <span class="Sa day"> Sa </span>
                 </div>                    
-                <label for="time">Select time</label> 
+                <div class="days-error" style="color: red;"></div>
+                <label for="time" class="label">Select time</label> 
                 <div class="time-input">
-                    <input type="time" name="time" id="time" value="12:30" required>
+                    <input type="time" name="time" id="timeReoccuring" value="12:30" required>
                 </div>
             </div>
-           
-            
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" onclick="setReoccuring()" value="" id="flexCheckChecked">
-                <label class="form-check-label" for="flexCheckChecked">
-                  Is reminder re-occuring?
-                </label>
-            </div>
-            
             <button class="set-reminder-btn">Set Reminder</button>
         </form>
+        <!-- End of reoccuring reminder form -->
 
-        <div class="post-landing"></div>
-
-        <script src="../static/js/changeActive.js"></script>
+        <script src="../static/js/toggleForm.js"></script>
         <script src="../static/js/set-reminder.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

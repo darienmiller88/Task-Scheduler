@@ -11,7 +11,7 @@
     height: 30px;
 }
 /* form in which all the input reside in. */
-.set-reminder-form{
+form{
     margin: auto;
     width: fit-content;
     padding: 20px;
@@ -19,6 +19,10 @@
 
 /* Center the reminder name input, and reminder date/time input */
 .reminder-input-div, .reminder-date-div, .reminder-time-div{
+    text-align: center;
+}
+
+.set-occuring-btn-group{
     text-align: center;
 }
 
@@ -35,10 +39,10 @@
     margin: auto;
     margin-top: 40px;
     background-color: rgb(211,211,211);
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 10px;
     border: 2px solid white;
-    padding: 20px;
+    padding: 15px;
     transition: 0.5s;
 }
 
@@ -50,12 +54,6 @@
 .set-reminder-btn:active{
     cursor: pointer;
     transform: translateY(5px);
-}
-
-.post-landing {
-    font-size: 30px;
-    text-align: center;
-    color: white;
 }
 
 .reminder-posted-message{
@@ -88,22 +86,25 @@ input.form-check-input{
     border: 2px black solid;
 }
 
-label{
+.label{
     display: block;
     color: rgb(211,211,211);
     font-size: 25px;
 }
 
-span{
+.day{
     background-color: rgb(211,211,211);
     border-radius: 50%;
     padding: 4px;
     margin: 5px;
-    transition: 0.5s;
+    transition: 0.4s;
 }
 
-span:hover{
+.day:hover{
     background-color: rgb(111, 111, 111);
     cursor: pointer;
 }
 
+.day:active{
+    background-color: green;
+}

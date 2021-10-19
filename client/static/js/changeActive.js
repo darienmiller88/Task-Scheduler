@@ -1,5 +1,23 @@
 const homelink = document.getElementById("home-link")
 const setReminderLink = document.getElementById("set-reminder-link")
+const navbarItems = document.getElementById("navBarItems")
+const active = "active"
+
+navbarItems.addEventListener("click", e => {        
+    removeActive()
+
+    if(e.target.classList.contains(active)){
+        e.target.classList.remove(active)
+    }else{
+        e.target.classList.add(active)
+    }
+})
+
+function removeActive(){
+    navbarItems.querySelectorAll(".nav-item").forEach(li => {
+        li.querySelector(".nav-link").classList.remove(active)
+    })
+}
 
 function changeHomeToActive(){
     //If the home link already has the "active" class added, ignore it.

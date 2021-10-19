@@ -1,0 +1,52 @@
+/*  */
+.set-reminder-btn-group{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 35%;
+    margin: auto;
+}
+
+.is-single-occuring, .is-reoccuring{
+    cursor: pointer;
+    border: black 2px solid;
+    background-color: rgba(211,211,211, 0);
+    padding: 10px;
+    transition: 0.4s;
+}
+
+.is-single-occuring{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.is-reoccuring{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.is-single-occuring:hover, .is-reoccuring:hover{
+    background-color: black;
+    color: white;
+}
+
+.is-single-occuring:active, .is-reoccuring:active{
+    transform: translateY(5px);
+}
+
+.active{
+    background-color: black;
+    color: white;
+}
+
+@media only screen and (max-width: 900px) {
+    .set-reminder-btn-group{
+        width: 50%;
+    }
+}
+
+
+@media only screen and (max-width: 360px) {
+    .set-reminder-btn-group{
+        width: 90%;
+    }
+}

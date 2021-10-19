@@ -1,10 +1,10 @@
 const reminders = document.querySelector(".reminders")
-const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/api/v1/tasks" : "https://thetaskscheduler.herokuapp.com/api/v1/tasks"
-
+const API_URL_GET = window.location.hostname === "localhost" ? "http://localhost:8080/api/v1/reminders" : "https://thetaskscheduler.herokuapp.com/api/v1/reminders"
+const editModalName = "#editModal"
 getTasks()
 
 async function getTasks(){
-    const response = await fetch(API_URL)
+    const response = await fetch(API_URL_GET)
     const result = await response.json()
 
     addTasks(result)
@@ -12,8 +12,8 @@ async function getTasks(){
 
 function addTasks(tasks){
     tasks.forEach(task => {
-        // console.log(task["reminder"]);
         const elem = createTask(task)
+        
         reminders.append(elem)
     })    
 }
@@ -27,6 +27,7 @@ function createTask(task){
     const editButton = document.createElement("button")
     const deleteButton = document.createElement("button")
 
+    reminder.id = task["id"]
     reminder.className = "reminder"
     reminderName.className = "reminder-name"
     infoBlock.className = "info-block"
@@ -40,6 +41,9 @@ function createTask(task){
     time.textContent = task["time"]
     editButton.textContent = "edit"
     deleteButton.textContent = "delete"
+
+    // editButton.setAttribute("data-bs-toggle", "modal")
+    // editButton.setAttribute("data-bs-target", editModalName)
 
     date.append(time)
     infoBlock.append(date, editButton, deleteButton)
