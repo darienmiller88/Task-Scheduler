@@ -1,7 +1,7 @@
 //COM - 430
 //Task masters
 //Oshane Miller
-//10-18-21
+//10-19-21
 
 package main
 
@@ -22,7 +22,6 @@ import (
 )
 
 func main() {
-	//Load env file."../.env"
 	godotenv.Load()
 
 	app := gin.Default()

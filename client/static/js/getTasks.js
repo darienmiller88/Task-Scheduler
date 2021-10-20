@@ -26,6 +26,7 @@ function createTask(task){
     const time = document.createElement("span")
     const editButton = document.createElement("button")
     const deleteButton = document.createElement("button")
+    const dateValue = (task["date"]) ? task["date"] + ", " : task["days"].join(", ") + ", "
 
     reminder.id = task["id"]
     reminder.className = "reminder"
@@ -36,8 +37,12 @@ function createTask(task){
     editButton.className = "edit"
     deleteButton.className = "delete"
 
+    if(task["days"]){
+        date.classList.add("days")
+    }
+
     reminderName.textContent = task["reminder"]
-    date.textContent = task["date"] + ", "
+    date.textContent = dateValue
     time.textContent = task["time"]
     editButton.textContent = "edit"
     deleteButton.textContent = "delete"

@@ -1,1 +1,1 @@
-web: bin/task_scheduler
+web: api/bin/task_scheduler
