@@ -6,48 +6,16 @@ const dateDiv = document.querySelector(".reminder-date-div")
 const timeDiv = document.querySelector(".reminder-time-div")
 const toggleFormButtonGroup = document.querySelector(".set-reminder-btn-group")
 const errorNoDaysSelected = document.querySelector(".days-error")
-const dateInput = document.getElementById("date")
-const timeSingleOccuring = document.getElementById("timeSingleOccuring")
 const timeReoccuring = document.getElementById("timeReoccuring")
 const activeDay = "active-day"
 const CHECKED_COLOR = "green"
 const UNCHECKED_COLOR = "rgb(211,211,211)"
 const DAY_CLASS_NAME = "day"
 const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/api/v1/reminders" : "https://thetaskscheduler.herokuapp.com/api/v1/reminders"
-let date = new Date()
-
-
-//Set the default date to today's date in the following form.
-dateInput.value = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-dateInput.min = dateInput.value
-
-console.log("min:", dateInput.min );
 
 //When the page is loaded, hide the posted message, and the reoccuring form.
 postedMessage.textContent = ""
 reoccuringReminderForm.style.display = 'none'
-
-//Whenever the time value is changed, dynamically change the minimum date value to be either today's date
-//or tomorrow's date depending on whether or not the time value is less then the current time. This is done
-//to prevent the user from inputting dates that can never be triggered, like 7 AM 10/1/2021 while the current
-//time is 12 PM.  
-timeSingleOccuring.addEventListener("change", () => {
-    const currentDate = new Date()
-    const inputTime = timeSingleOccuring.value.split(":")
-    const currentHour = currentDate.getHours();
-    const currentMintues = currentDate.getMinutes()
-    const inputHour = parseInt(inputTime[0])
-    const inputMinutes = parseInt(inputTime[1])
-
-    //If the time put into the time input is LESS than the current time, push the minimum date one day forward.
-    if ((inputHour === currentHour && inputMinutes <= currentMintues) || inputHour < currentHour) {
-        dateInput.min = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`
-    }else{
-        dateInput.min = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-    }
-
-    console.log("new min:", dateInput.min);
-})
 
 //This is the form for setting a single occuring reminder.
 singleOccuringReminderForm.addEventListener("submit", async e => {

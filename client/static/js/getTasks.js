@@ -37,16 +37,13 @@ function createTask(task){
     editButton.className = "edit"
     deleteButton.className = "delete"
 
-    if(task["days"]){
-        date.classList.add("days")
-    }
-
     reminderName.textContent = task["reminder"]
     date.textContent = dateValue
     time.textContent = task["time"]
     editButton.textContent = "edit"
     deleteButton.textContent = "delete"
 
+    date.setAttribute("name", (task["date"]) ? "single" : "reoccuring")
     // editButton.setAttribute("data-bs-toggle", "modal")
     // editButton.setAttribute("data-bs-target", editModalName)
 

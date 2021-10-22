@@ -1,6 +1,7 @@
 const modalBody      = document.querySelector(".modal-body")
 const myModalEl      = document.getElementById('editModal')
 const saveChangesBtn = document.getElementById("saveEditBtn")
+const singleOccuring = "single"
 const API_URL        = window.location.hostname === "localhost" ? "http://localhost:8080/api/v1/reminders" : "https://thetaskscheduler.herokuapp.com/api/v1/reminders"
 
 saveChangesBtn.addEventListener("click", e => {
@@ -14,6 +15,18 @@ saveChangesBtn.addEventListener("click", e => {
 
 reminders.addEventListener("click", async e => {
     if(e.target.classList.contains("edit")){
+        const reminderDiv =  e.target.parentElement.parentElement
+
+        console.log(reminderDiv);
+
+        //Check to see if the reminder 
+        if(reminderDiv.name === singleOccuring){
+            console.log("date valid");
+        }else{
+            console.log("date invalid");
+        }
+
+        console.log(dateText);
         // const idDiv = document.createElement("div")
 
         // idDiv.className = "id"
