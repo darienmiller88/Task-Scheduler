@@ -16,15 +16,16 @@ type ReminderController struct {
 }
 
 func (r *ReminderController) Init(route *gin.RouterGroup) {
-	route.GET("/reminders", r.getReminders)
-	route.POST("/reminders", r.postReminder)
-	route.GET("/reminders/:reminderID", r.getReminderByID)
-	route.PUT("/reminders/:reminderID", r.editReminder)
-	route.DELETE("/reminders/:reminderID", r.deleteReminder)
+	route.GET("/", r.getReminders)
+	route.POST("/", r.postReminder)
+	route.GET("/:reminderID", r.getReminderByID)
+	route.PUT("/:reminderID", r.editReminder)
+	route.DELETE("/:reminderID", r.deleteReminder)
 }
 
 //READ - Get ALL reminders from the database.
 func (r *ReminderController) getReminders(c *gin.Context) {
+	// c.Request.Header.Add("Access-Control-Allow-Origin", "*")
 	reminders   := []models.Reminder{}
 	result, err := mgm.Coll(&models.Reminder{}).Find(mgm.Ctx(), bson.D{})
 
@@ -34,11 +35,12 @@ func (r *ReminderController) getReminders(c *gin.Context) {
 	}
 
 	if err = result.All(mgm.Ctx(), &reminders); err != nil {
-		c.JSON(http.StatusOK, err.Error())
+		c.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
 
 	reminders = funk.Reverse(reminders).([]models.Reminder)
+
 
 	c.IndentedJSON(http.StatusOK, reminders)
 }

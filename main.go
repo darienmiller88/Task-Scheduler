@@ -12,6 +12,8 @@ import (
 
 	"task_scheduler/api/controllers"
 
+	"github.com/gin-contrib/cors"
+	//"github.com/go-chi/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-co-op/gocron"
 	"github.com/joho/godotenv"
@@ -32,15 +34,21 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	
+	//app.Static("/static", "./client/build/static")
+	//app.LoadHTMLGlob("./client/build/templates/*")
 
-	app.Use()
-	app.Static("/static", "./client/static")
-	app.LoadHTMLGlob("./client/templates/*")
+	// app.GET("/", func(c *gin.Context) {
+	// 	http.ServeFile(c.Writer, c.Request, "./client/build/index.html")
+	// 	//c.HTML(200, "index.html", nil)
+	// })
+	app.Use(cors.Default())
 
 	//Mount the router on "api/v1", and pass it the background context.
-	mountController.Init(app.Group("/"))
+	mountController.Init(app.Group("/api/v1"))
 	//time.Now().Add(30 * time.Second)
 
+	fmt.Println(mountController)
 	//Scheduler to periodically send messages.
 	scheduler.Every(10).Seconds().Do(func() {
 		fmt.Println("is working")

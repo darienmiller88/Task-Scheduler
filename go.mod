@@ -51,5 +51,7 @@ require (
 require (
 	github.com/GuilhermeCaruso/kair v0.0.0-20200618030634-2cbc3ec356d4 // indirect
 	github.com/deckarep/golang-set v1.7.1 // indirect
+	github.com/gin-contrib/cors v1.3.1 // indirect
+	github.com/go-chi/cors v1.2.0 // indirect
 	github.com/thoas/go-funk v0.9.1 // indirect
 )

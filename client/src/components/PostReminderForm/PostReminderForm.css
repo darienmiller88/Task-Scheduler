@@ -1,0 +1,54 @@
+.title{
+    color: white;
+    text-shadow: 5px 5px black;
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+}
+
+/* Center the reminder name input, and reminder date/time input */
+.reminder-input-div, .reminder-date-div, .reminder-time-div{
+    text-align: center;
+}
+
+/*  */
+.set-reminder-btn{
+    display: grid;
+    margin: auto;
+    margin-top: 40px;
+    background-color: rgb(211,211,211);
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 15px;
+    transition: 0.5s;
+}
+
+.set-reminder-btn:hover{
+    background-color: rgb(111,111,111);
+    cursor: pointer;
+}
+
+.set-reminder-btn:active{
+    cursor: pointer;
+    transform: translateY(5px);
+}
+/* End of post button styling */
+
+#reminder-input{
+    border-radius: 10px;
+    font-size: 20px;
+    border: 2px black solid;
+}
+
+.label{
+    display: block;
+    color: rgb(211,211,211);
+    font-size: 25px;
+}
+
+form{
+    margin: auto;
+    width: fit-content;
+    padding: 20px;
+}

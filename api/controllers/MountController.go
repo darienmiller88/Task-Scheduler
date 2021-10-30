@@ -10,9 +10,8 @@ type MountController struct {
 func (m *MountController) Init(route *gin.RouterGroup) {
 	reminderController := ReminderController{}
 	userController := UserController{}
-	viewController := ViewController{}
 
-	reminderController.Init(route.Group("/api/v1"))
-	userController.Init(route.Group("/api/v1"))
-	viewController.Init(route.Group("/"))
+	reminderController.Init(route.Group("/reminders"))
+	userController.Init(route.Group("/users"))
+	//viewController.Init(route.Group("/"))
 }
