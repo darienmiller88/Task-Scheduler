@@ -5,11 +5,7 @@ import '../../components/Scrollbar/Scrollbar.css'
 import Nav from '../../components/Nav/Nav'
 import Reminder from '../../components/Reminder/Reminder'
 import loading from "../../img/loading.gif"
-import Port from "../../components/Port/Port"
-
-const baseUrl = `http://localhost:${Port}/api/v1/reminders/`
-
-console.log("port:", baseUrl);
+import Url from "../../components/BaseUrl/BaseUrl"
 
 export default function DashboardPage() {
     const [reminders, setReminders] = useState([])
@@ -19,7 +15,7 @@ export default function DashboardPage() {
     useEffect(() => {
         async function getReminders(){
             try {
-                const response = await axios.get(baseUrl)
+                const response = await axios.get(Url)
                 setReminders(response.data)
             } catch (err) {
                 setError(err)

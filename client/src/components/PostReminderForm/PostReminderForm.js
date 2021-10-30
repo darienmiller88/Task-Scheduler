@@ -2,9 +2,7 @@ import React, { useRef, useState } from 'react'
 import "./PostReminderForm.css"
 import Days from '../Days/Days'
 import axios from 'axios'
-import Port from "../Port/Port"
-
-const baseUrl = `http://localhost:${Port}/api/v1/reminders/`
+import BaseUrl from "../BaseUrl/BaseUrl"
 
 export default function PostReminderForm(props) {
     const daysRef = useRef(null)
@@ -30,14 +28,12 @@ export default function PostReminderForm(props) {
 
             postReminder(data)
         }
-
-        resetForm()
     }
 
     const postReminder = async (data) => {       
         console.log("data:", data);
         try {
-            const response = await axios.post(`${baseUrl}`, data)
+            const response = await axios.post(`${BaseUrl}`, data)
             console.log(response);
         } catch (error) {
             console.log(error);
@@ -45,6 +41,7 @@ export default function PostReminderForm(props) {
     }
 
     const prepareSingleOccuringForm = (date, time, reminder) => {
+        resetForm()
         return  {
             time: getFormattedTime(time), 
             date, 
@@ -66,6 +63,7 @@ export default function PostReminderForm(props) {
             return
         }
 
+        resetForm()
         return {
             time: getFormattedTime(time),  
             days: daysChecked, 

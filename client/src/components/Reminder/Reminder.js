@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from "axios"
 import './Reminder.css'
-import Port from "../Port/Port"
-
-const baseUrl = `http://localhost:${Port}/api/v1/reminders`
+import BaseUrl from "../BaseUrl/BaseUrl"
 
 export default function Reminder(props) {
     const deleteReminder = async () => {
@@ -12,7 +10,7 @@ export default function Reminder(props) {
 
         //Afterwards, remove it from the database by sending a delete request to the server.
         try {
-            const response = await axios.delete(`${baseUrl}/${props.id}`)
+            const response = await axios.delete(`${BaseUrl}/${props.id}`)
 
             console.log("delete Response:", response);
         } catch (error) {
