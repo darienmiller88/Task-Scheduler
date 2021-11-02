@@ -35,7 +35,7 @@ Full stack chat application built using Golang and MongoDB in the backend, and H
 * [Twilio](https://www.twilio.com/try-twilio)
 
  ## Check it out here!:
-https://thetaskscheduler.herokuapp.com
+https://thetaskscheduler.netlify.app/
 
  ## Getting Started
 
