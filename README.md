@@ -5,6 +5,8 @@
 ![](https://img.shields.io/badge/build-passing-green)
 ![](https://img.shields.io/badge/MongoDB-Cloud-green)
 ![](https://img.shields.io/badge/Twilio-API-red)
+![](https://img.shields.io/badge/Netlify-success-green)
+
 
 ## Landing page to view upcoming reminders
 <img width="960" alt="home-page" src="https://user-images.githubusercontent.com/32966645/136648169-b764738a-57a8-407e-8951-15b2ff5b1434.PNG">
