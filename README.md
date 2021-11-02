@@ -22,7 +22,7 @@
 
 ## Description
 
-Full stack chat application built using Golang and MongoDB in the backend, and HTML, CSS, and Javascript in the frontend. This is an app for a client requiring a personalized task scheduler for their everyday use. Features I aim to add include:
+Full stack chat application built using Golang and MongoDB in the backend, and React in the frontend. This is an app for a client requiring a personalized task scheduler for their everyday use. Features I aim to add include:
 
  - JWT + Google OAuth2 authentication.
  - Text reminders using the Twilio API
@@ -35,6 +35,7 @@ Full stack chat application built using Golang and MongoDB in the backend, and H
 * [Bootstrap](https://getbootstrap.com)
 * [MongoDB-Atlas](https://www.mongodb.com/cloud/atlas)
 * [Twilio](https://www.twilio.com/try-twilio)
+* [Netlify](https://bit.ly/3q4pcJz)
 
  ## Check it out here!:
 https://thetaskscheduler.netlify.app/
