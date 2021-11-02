@@ -33,7 +33,7 @@ export default function PostReminderForm(props) {
     const postReminder = async (data) => {       
         console.log("data:", data);
         try {
-            const response = await axios.post(`${BaseUrl}`, data)
+            const response = await axios.post(`${BaseUrl}/`, data)
             console.log(response);
         } catch (error) {
             console.log(error);

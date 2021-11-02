@@ -15,7 +15,7 @@ export default function DashboardPage() {
     useEffect(() => {
         async function getReminders(){
             try {
-                const response = await axios.get(Url)
+                const response = await axios.get(`${Url}/`)
                 setReminders(response.data)
             } catch (err) {
                 setError(err)
