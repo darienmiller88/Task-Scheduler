@@ -28,6 +28,7 @@ export default function DashboardPage() {
     }, [])
 
     console.log("isloading:", isLoading);
+    console.log("reminders:", reminders);
 
     const editReminder = id => {
         console.log("editing reminder:", id);
@@ -60,7 +61,7 @@ export default function DashboardPage() {
                         <Reminder
                             key = {reminder.id}
                             id = {reminder.id}
-                            date = {reminder.date ? reminder.date : reminder.days.join(", ") + ","}
+                            date = {reminder.date ? reminder.date : reminder.days.join(", ")}
                             time = {reminder.time}                            
                             reminderName = {reminder.reminder}
                             editReminder = {editReminder}
