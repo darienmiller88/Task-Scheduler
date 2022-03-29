@@ -17,6 +17,11 @@ type ReminderController struct {
 
 func (r *ReminderController) Init(route *gin.RouterGroup) {
 	route.GET("/", r.getReminders)
+	route.GET("/test", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": 56,
+		})
+	})
 	route.POST("/", r.postReminder)
 	route.GET("/:reminderID", r.getReminderByID)
 	route.PUT("/:reminderID", r.editReminder)
